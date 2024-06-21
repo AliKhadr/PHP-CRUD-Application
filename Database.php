@@ -1,8 +1,10 @@
 <?php
 
 class Database {
-    // Create a property connection for the database
+    // Create a instance property connection for the database
     public $connection;
+    // Create a instance property for the PDO statment
+    public $statment;
 
     // Default constructor when we create a Database object
     public function __construct($config, $username = 'root', $password = '') {
@@ -13,12 +15,30 @@ class Database {
 
 
     public function query($query , $params = []) {
-        $stament = $this->connection->prepare($query);
+        // Assigning PDO statment to the Database object
+        $this->statment = $this->connection->prepare($query);
 
-        $stament->execute($params);
+        $this->statment->execute($params);
         
-        return $stament;
-            
-    }   
+        // returning an instance of our Database class
+        return $this;
+    }
+    
+    public function find() {
+        return $this->statment->fetch();
+    }
+
+    public function findAll() {
+        return $this->statment->fetchAll();
+    }
+
+    public function findOrFail() {
+        $result = $this->find();
+        if(!$result) {
+            abort(Response::NOT_FOUND);
+        } else {
+            return $result;
+        }
+    }
 
 }

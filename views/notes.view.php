@@ -12,7 +12,7 @@
                     <?= $note['body'] ?> 
                 </a>
             </li>
-        <?php endforeach; ?>
+        <?php endforeach ?>
     </div>
 </main>
 <?php require('partials/footer.php') ?>
