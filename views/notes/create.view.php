@@ -1,6 +1,6 @@
-<?php require('partials/head.php') ?>
-<?php require('partials/nav.php') ?>
-<?php require('partials/banner.php') ?>
+<?php require('views/partials/head.php') ?>
+<?php require('views/partials/nav.php') ?>
+<?php require('views/partials/banner.php') ?>
 
 <main>
     <div class="mx-auto max-w-6xl py-6 sm:px-6 lg:px-8">        
@@ -11,7 +11,7 @@
             <div class="col-span-full">
             <label for="body" class="block text-sm font-medium leading-6 text-gray-900">Add a note</label>
             <div class="mt-2">
-                <textarea id="body" name="body" rows="3" placeholder="Write something..." class="block w-full rounded-md border-0 p-5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"><?= isset($_POST['body']) ? $_POST['body'] : NULL ?></textarea>
+                <textarea id="body" name="body" rows="3" required placeholder="Write something..." class="block w-full rounded-md border-0 p-5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"><?= isset($_POST['body']) ? $_POST['body'] : NULL ?></textarea>
             </div>
                 <?php if (isset($errors['body'])) : ?>
                     <p class="text-red-500 text-s mt-5 ml-5"><?= $errors['body'] ?></p>
@@ -30,4 +30,4 @@
 
 
 
-<?php require('partials/footer.php') ?>
+<?php require('views/partials/footer.php') ?>
