@@ -1,5 +1,8 @@
 <?php
 
+namespace Core;
+use PDO;
+
 class Database {
     // Create a instance property connection for the database
     public $connection;

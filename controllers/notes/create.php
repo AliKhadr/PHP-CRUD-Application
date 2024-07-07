@@ -1,6 +1,8 @@
 <?php
 
 // require basePath('Validator.php');
+use Core\Database;
+use Core\Validator;
 
 $currentUser = 1;
 $errors = [];

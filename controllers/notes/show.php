@@ -1,5 +1,7 @@
 <?php
 
+use Core\Database;
+
 $currentUser = 1;
 
 $config = require basePath('config.php');

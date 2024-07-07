@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+
 /* List of response code */
 
 class Response {
