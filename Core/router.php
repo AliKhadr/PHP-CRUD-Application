@@ -13,7 +13,6 @@ class Router{
         ];
     }
 
-
     public function get($uri, $controller){
         $this->add('GET', $uri, $controller);
     }
