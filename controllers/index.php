@@ -1,7 +1,5 @@
 <?php
 
-$_SESSION['name'] = 'Ali';
-
 view("index.view.php", [
-    'heading' => 'Home'
+    'heading' => isset($_SESSION['user']) ? "Hello, {$_SESSION['user']['name']}" : 'Home'
 ]);

@@ -6,17 +6,35 @@
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt="Your Company">
-            <h2 class="mt-1 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register your account</h2>
+            <h2 class="mt-1 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register your account
+            </h2>
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-2" action="#" method="POST">
+            <form class="space-y-2" action="/register" method="POST">
+                <div>
+                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                    <div class="mt-2">
+                        <input id="name" name="name" required value="<?= isset($_POST["name"]) ? $_POST["name"] : NULL?>"
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+
+                    <?php if (isset($errors['name'])): ?>
+                        <p class="text-red-500 text-s mt-2 ml-5"><?= $errors['name'] ?></p>
+                    <?php endif ?>
+
+                </div>
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                     <div class="mt-2">
-                        <input id="email" name="email" type="email" autocomplete="email" required
+                        <input id="email" name="email" type="email" autocomplete="email" required value="<?= isset($_POST["email"]) ? $_POST["email"] : NULL?>"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
+
+                    <?php if (isset($errors['email'])): ?>
+                        <p class="text-red-500 text-s mt-2 ml-5"><?= $errors['email'] ?></p>
+                    <?php endif ?>
+
                 </div>
 
                 <div>
@@ -27,6 +45,9 @@
                         <input id="password" name="password" type="password" autocomplete="current-password" required
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
+                    <?php if (isset($errors['password'])): ?>
+                        <p class="text-red-500 text-s mt-2 ml-5"><?= $errors['password'] ?></p>
+                    <?php endif ?>
                 </div>
 
                 <div>
