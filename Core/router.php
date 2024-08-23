@@ -3,6 +3,7 @@
 namespace Core;
 use Core\Middleware\Auth;
 use Core\Middleware\Guest;
+use Core\Middleware\Middleware;
 
 class Router{
     protected $routes = [];
@@ -40,19 +41,13 @@ class Router{
 
     public function only($key){
         $this->routes[array_key_last($this->routes)]['middleware'] = $key;
-
         return $this;
     }
 
     public function route($uri, $method){
         foreach($this->routes as $route){
             if($route['uri'] === $uri && $route['method'] === strtoupper($method)){
-                if($route['middleware'] === 'guest'){
-                    (new Guest)->handle();
-                } 
-                if($route['middleware'] === 'auth'){
-                    (new Auth)->handle();
-                }               
+                Middleware::resolve($route['middleware']);
                 return require basePath($route['controller']);
             }
         }
