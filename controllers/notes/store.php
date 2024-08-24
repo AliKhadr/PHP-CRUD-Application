@@ -5,7 +5,7 @@ use Core\App;
 use Core\Database;
 use Core\Validator;
 
-$currentUser = 1;
+$currentUser = $_SESSION['user']['userId'];
 $errors = [];
 
 $db = App::resolve('Core\Database');
@@ -25,12 +25,13 @@ $db->query('INSERT INTO notes(body, user_id) VALUES (:body, :user_id)', [
     'body' => $_POST['body'],
     'user_id' => $currentUser,
 ]);
+
 $errors['body'] = 'Submitted Succesfully';
-// header('location: /notes');
-// die();
+header('location: /notes');
+die();
 
 
-view("notes/create.view.php", [
-    'heading' => 'Create Notes',
-    'errors' => $errors
-]);
+// view("notes/create.view.php", [
+//     'heading' => 'Create Notes',
+//     'errors' => $errors
+// ]);
