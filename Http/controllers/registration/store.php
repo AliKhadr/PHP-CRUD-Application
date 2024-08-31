@@ -1,4 +1,5 @@
 <?php
+use Core\Authenticator;
 use Core\Validator;
 use Core\App;
 use Core\Database;
@@ -49,10 +50,11 @@ if($user){
         'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 
-    login([
-        'email' => $email,
-        'name' => $name
-    ]);
+    (new Authenticator)->attempt($email, $password);
+    // Authenticator::login([
+    //     'email' => $email,
+    //     'name' => $name
+    // ]);
 
     header('location: /');
     // After redirect, kill script

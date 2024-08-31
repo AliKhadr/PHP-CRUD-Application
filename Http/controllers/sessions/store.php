@@ -8,27 +8,17 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 $form = new LoginForm();
-if( !($form->validate($email, $password))){
-    return view("sessions/create.view.php", [
-        'errors' => $form->getErrors()
-    ]);
-}
-
-$auth = new Authenticator();
-if($auth->attempt($email, $password)){
-    redirect('/');
+if($form->validate($email, $password)){
+    if((new Authenticator)->attempt($email, $password)){
+        redirect('/');
+    } else{
+        $form->setErrors('email', 'No matching email address or password found.');
+    }
 }
 
 return view("sessions/create.view.php", [
-    'errors' => [
-        'email' => 'No matching email address or password found.'
-    ]
+    'errors' => $form->getErrors()
 ]);
-
-
-
-
-
 
 
 
