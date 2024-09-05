@@ -11,8 +11,8 @@ class Session {
         $_SESSION[$key] = $value;
     }
 
-    public static function get($key){
-        return $_SESSION['_flash'][$key] ?? $_SESSION[$key] ?? NULL;
+    public static function get($key, $default = null){
+        return $_SESSION['_flash'][$key] ?? $_SESSION[$key] ?? $default;
     }
 
     public static function flash($key, $value){

@@ -26,7 +26,7 @@ $db->query('INSERT INTO notes(body, user_id) VALUES (:body, :user_id)', [
     'user_id' => $currentUser,
 ]);
 
-$errors['body'] = 'Submitted Succesfully';
+// $errors['body'] = 'Submitted Succesfully';
 header('location: /notes');
 die();
 
