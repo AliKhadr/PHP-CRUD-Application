@@ -8,7 +8,7 @@ class LoginForm {
 
     protected $errors = [];
 
-    public function __construct($attributes){
+    public function __construct(public array $attributes){
         // Validate email input
         if( ! Validator::emailValid($attributes['email'])){
             $this->errors['email'] = 'Please provide a valid email address.';
@@ -23,7 +23,8 @@ class LoginForm {
     public static function validate($attributes){
         $instance = new static($attributes);
         if($instance->hasErrors()){
-            throw new ValidationException();
+            // throw new ValidationException();
+            ValidationException::throw($instance->getErrors(), $instance->attributes);
         }
 
         return $instance;
