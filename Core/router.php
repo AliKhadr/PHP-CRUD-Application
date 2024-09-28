@@ -54,4 +54,8 @@ class Router{
         abort();
     }
 
+    public function previousURL(){
+        return $_SERVER['HTTP_REFERER'];
+    }
+
 }

@@ -22,12 +22,12 @@ class LoginForm {
 
     public static function validate($attributes){
         $instance = new static($attributes);
-        if($instance->hasErrors()){
-            // throw new ValidationException();
-            ValidationException::throw($instance->getErrors(), $instance->attributes);
-        }
 
-        return $instance;
+        return $instance->hasErrors() ? $instance->throw() : $instance;
+    }
+
+    public function throw(){
+        ValidationException::throw($this->getErrors(), $this->attributes);
     }
 
     public function hasErrors(){
@@ -40,6 +40,7 @@ class LoginForm {
 
     public function setErrors($field, $message){
         $this->errors[$field] = $message;
+        return $this;
     }
 
 }
